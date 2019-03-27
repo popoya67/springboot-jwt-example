@@ -57,10 +57,9 @@ public class JwtService{
 						 .setSigningKey(this.generateKey())
 						 .parseClaimsJws(jwt);
 		} catch (Exception e) {
-			LOGGER.error(e.getMessage(), e);
+			LOGGER.debug(e.getMessage(), e);
 			throw new JWTException("decodeing failed");
 		}
-		
 		return objectMapper.convertValue(claims.getBody().get(DATA_KEY), User.class);
 	}
 }
